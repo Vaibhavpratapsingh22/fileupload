@@ -2,8 +2,9 @@
 import React, { useState } from "react";
 import AlertMessage from "./AlertMessage";
 import FilePreview from "./FilePreview";
+import ProgressBar from "./ProgressBar";
 
-const UploadForm = ({handleFileUploadBtn}) => {
+const UploadForm = ({handleFileUploadBtn, progress}) => {
   const [uploadFile, setUploadFile] = useState(null);
   const [enableUploadBtn, setEnableUploadBtn] = useState(false);
   const [showError, setShowError] = useState(false);
@@ -71,7 +72,7 @@ const UploadForm = ({handleFileUploadBtn}) => {
       <div className="flex justify-center mt-5 items-center rounded-lg p-1 ">
         <button
           onClick={() => handleFileUploadBtn(uploadFile)}
-          disabled={!enableUploadBtn}
+          disabled={!enableUploadBtn || progress>0}
           className=" disabled:bg-gray-500 disabled:text-white inline-block rounded-md bg-white px-4 py-2 text-sm text-green-500 shadow-sm focus:relative hover:bg-green-500 hover:text-white"
         >
           Upload Files
@@ -81,6 +82,9 @@ const UploadForm = ({handleFileUploadBtn}) => {
         {showError ? (
           <AlertMessage message={"Max size limit exceeded !"} />
         ) : null}
+      </div>
+      <div >
+      {progress>0 ? <ProgressBar progress={progress}/> : null}  
       </div>
     </>
   );

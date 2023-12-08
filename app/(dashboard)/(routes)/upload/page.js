@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, { useState } from "react";
 import { UserButton } from "@clerk/nextjs";
 import UploadForm from "./_components/UploadForm";
 import { app } from "@/firebaseConfig";
@@ -8,7 +8,7 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 
 const Upload = () => {
   const storage = getStorage(app);
-  
+  const [progressValue, setProgressValue] = useState(0);
   
   const handleFileUploadBtn =(file)=>{
     const metadata = {
@@ -21,6 +21,7 @@ const Upload = () => {
       // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       console.log('Upload is ' + progress + '% done');
+      setProgressValue(progress)
       switch (snapshot.state) {
         case 'paused':
           console.log('Upload is paused');
@@ -61,7 +62,7 @@ const Upload = () => {
       <h2 className="flex justify-center mt-5 text-lg p-10 text-[30px]">Start 
         <strong className="text-green-500 px-1"> Uploading </strong> Your <strong className="text-green-500 px-1"> Files </strong>  Here.
       </h2>
-      <UploadForm handleFileUploadBtn={(file)=>handleFileUploadBtn(file)}/>
+      <UploadForm handleFileUploadBtn={(file)=>handleFileUploadBtn(file)} progress={progressValue}/>
     </div>
   );
 };
