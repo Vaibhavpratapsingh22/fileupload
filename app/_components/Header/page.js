@@ -13,7 +13,7 @@ const Header = ({loggedIn}) => {
       <div className="flex justify-between">
         <div className="flex space-x-7">
           <div>
-            <a href="#" className="flex items-center py-4 px-2">
+            <a href="/" className="flex items-center py-4 px-2">
               
               <span className="font-semibold text-gray-500 text-lg">Welcome,</span>
             </a>

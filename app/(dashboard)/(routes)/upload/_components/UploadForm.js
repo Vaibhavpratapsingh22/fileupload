@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import AlertMessage from "./AlertMessage";
-import FilePreview from "./FilePreview";
+import FilePreview from "./UploadedFilePreview";
 import ProgressBar from "./ProgressBar";
 
 const UploadForm = ({handleFileUploadBtn, progress}) => {

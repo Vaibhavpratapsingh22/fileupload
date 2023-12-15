@@ -11,13 +11,16 @@ import {
 } from "firebase/storage";
 import { randomString } from "@/app/_utils/GenerateRandomString";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 
 const Upload = () => {
   const uploadComplete = 100;
+  const router =useRouter();
   const storage = getStorage(app);
   const db = getFirestore(app);
   const { user } = useUser();
   const [progressValue, setProgressValue] = useState(0);
+  const [uploadFileId, setUploadFileId] = useState(null);
 
   const handleFileUploadBtn = (file) => {
     const metadata = {
@@ -61,6 +64,7 @@ const Upload = () => {
         if (progress == uploadComplete) {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             saveInfo(file, downloadURL);
+            router.push(`/file-preview/${uploadFileId}`)
           });
         }
       }
@@ -81,6 +85,7 @@ const Upload = () => {
         password: "",
         shortUrl: `process.env.NEXT_PUBLIC_BASE_URL/${docId}`,
       });
+      setUploadFileId(docId);
       return response;
     } catch (error) {
       console.error(error);
