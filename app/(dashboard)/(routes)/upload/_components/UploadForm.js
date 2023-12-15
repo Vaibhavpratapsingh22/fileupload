@@ -5,18 +5,18 @@ import FilePreview from "./FilePreview";
 import ProgressBar from "./ProgressBar";
 
 const UploadForm = ({handleFileUploadBtn, progress}) => {
+  const maxFileSize = 2000000;
   const [uploadFile, setUploadFile] = useState(null);
   const [enableUploadBtn, setEnableUploadBtn] = useState(false);
   const [showError, setShowError] = useState(false);
   const onFileSelect = (file) => {
-    if (file && file?.size > 2000000) {
+    if (file && file?.size > maxFileSize) {
       setShowError(true);
       setEnableUploadBtn(false);
 
       return;
     }
-    if (file && file?.size < 2000000) {
-        console.log(file)
+    if (file && file?.size < maxFileSize) {
       setShowError(false);
       setEnableUploadBtn(true);
       setUploadFile(file);
@@ -61,7 +61,6 @@ const UploadForm = ({handleFileUploadBtn, progress}) => {
             type="file"
             className="hidden"
             onChange={(e) => {
-                console.log(e.target.files,"???"),
               onFileSelect(e.target.files[0]);
             }}
           />

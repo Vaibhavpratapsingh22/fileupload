@@ -12,8 +12,8 @@ const firebaseConfig = {
   projectId: "fileupload-web",
   storageBucket: "fileupload-web.appspot.com",
   messagingSenderId: "365418883224",
-  appId: "1:365418883224:web:984f589597c6db7ca348ed",
-  measurementId: "G-PZ82C0TNX6",
+  appId: "1:365418883224:web:af03a25f72846376a348ed",
+  measurementId: "G-PZ82C0TNX6"
 };
 
 // Initialize Firebase

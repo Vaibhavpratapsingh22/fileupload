@@ -1,7 +1,6 @@
 import React from "react";
 
 const ProgressBar = ({ progress  }) => {
-  console.log(progress, "??????");
   return (
     <div className="flex justify-center items-center">
     <div className="w-[50%] h-4 mt-3 bg-gray-200 rounded-full">
