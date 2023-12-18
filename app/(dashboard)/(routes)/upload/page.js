@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import UploadForm from "./_components/UploadForm";
 import { app } from "@/firebaseConfig";
@@ -64,15 +64,21 @@ const Upload = () => {
         if (progress == uploadComplete) {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             saveInfo(file, downloadURL);
-            router.push(`/file-preview/${uploadFileId}`)
           });
         }
       }
     );
   };
 
+  useEffect(() => {
+    if (uploadFileId) {
+      router.push(`/file-preview/${uploadFileId}`);
+    }
+  }, [uploadFileId]);
+
   const saveInfo = async (file, fileUrl) => {
     const docId = randomString(4);
+    setUploadFileId(docId);
     try {
       const response = await setDoc(doc(db, "files", docId), {
         id: docId,
@@ -85,7 +91,6 @@ const Upload = () => {
         password: "",
         shortUrl: `process.env.NEXT_PUBLIC_BASE_URL/${docId}`,
       });
-      setUploadFileId(docId);
       return response;
     } catch (error) {
       console.error(error);

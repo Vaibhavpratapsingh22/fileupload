@@ -1,14 +1,21 @@
 import React, { useState } from "react";
+import GlobalApi from "@/app/_utils/GlobalApi";
 
 const FileDetailsForm = ({
   handlePasswordSave,
   urlCopied,
   shortUrl,
   handleUrlCopy,
-  handleEmailValue
+  handleEmailValue,
 }) => {
   const [password, setPassword] = useState(null);
-  const [emailValue, setEmailValue] = useState(null);
+  const sendEmail = async () => {
+    const data = {
+      hell: "vaibhav",
+      set: "king",
+    };
+    const response = await GlobalApi.SendEmail(data);
+  };
   return (
     <div className="mx-auto mb-0 mt-8 max-w-md space-y-4">
       <div>
@@ -93,13 +100,16 @@ const FileDetailsForm = ({
             type="text"
             className="w-full rounded-lg border-gray-200 p-4 pe-12 text-gray-600 text-sm shadow-sm"
             placeholder="example@example.com"
-            onChange={(e)=>handleEmailValue(e.target.value)}
+            onChange={(e) => handleEmailValue(e.target.value)}
           />
         </div>
       </div>
 
       <div className="flex items-center justify-center">
-        <button className="inline-block rounded-lg bg-blue-500 px-10 py-3 text-sm font-medium text-white">
+        <button
+          className="inline-block rounded-lg bg-blue-500 px-10 py-3 text-sm font-medium text-white"
+          onClick={() => sendEmail()}
+        >
           Send Email
         </button>
       </div>
