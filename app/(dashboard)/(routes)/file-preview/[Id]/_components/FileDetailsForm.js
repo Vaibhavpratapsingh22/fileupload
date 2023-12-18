@@ -14,7 +14,7 @@ const FileDetailsForm = ({
       hell: "vaibhav",
       set: "king",
     };
-    const response = await GlobalApi.SendEmail(data);
+    const response = await GlobalApi.SendEmail();
   };
   return (
     <div className="mx-auto mb-0 mt-8 max-w-md space-y-4">
