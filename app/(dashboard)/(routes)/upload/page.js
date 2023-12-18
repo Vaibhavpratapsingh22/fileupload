@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import UploadForm from "./_components/UploadForm";
 import { app } from "@/firebaseConfig";
@@ -11,13 +11,16 @@ import {
 } from "firebase/storage";
 import { randomString } from "@/app/_utils/GenerateRandomString";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 
 const Upload = () => {
   const uploadComplete = 100;
+  const router =useRouter();
   const storage = getStorage(app);
   const db = getFirestore(app);
   const { user } = useUser();
   const [progressValue, setProgressValue] = useState(0);
+  const [uploadFileId, setUploadFileId] = useState(null);
 
   const handleFileUploadBtn = (file) => {
     const metadata = {
@@ -67,8 +70,15 @@ const Upload = () => {
     );
   };
 
+  useEffect(() => {
+    if (uploadFileId) {
+      router.push(`/file-preview/${uploadFileId}`);
+    }
+  }, [uploadFileId]);
+
   const saveInfo = async (file, fileUrl) => {
     const docId = randomString(4);
+    setUploadFileId(docId);
     try {
       const response = await setDoc(doc(db, "files", docId), {
         id: docId,

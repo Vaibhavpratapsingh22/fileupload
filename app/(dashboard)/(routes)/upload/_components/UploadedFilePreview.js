@@ -1,7 +1,7 @@
 import { CrossIcon, CrosshairIcon, File, FileUp, X } from "lucide-react";
 import React from "react";
 
-const FilePreview = ({ name, size, type, removeFile }) => {
+const UploadedFilePreview = ({ name, size, type, removeFile }) => {
   return (
     <div className="flex justify-between items-center mx-4 mt-5 border-2 border-white-500 rounded text-sm p-2">
       <div className="flex flex-row items-center">
@@ -18,4 +18,4 @@ const FilePreview = ({ name, size, type, removeFile }) => {
   );
 };
 
-export default FilePreview;
+export default UploadedFilePreview;
