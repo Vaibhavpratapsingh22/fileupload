@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import GlobalApi from "@/app/_utils/GlobalApi";
+import GlobalApi from "../../../../../_utils/GlobalApi";
 
 const FileDetailsForm = ({
   handlePasswordSave,

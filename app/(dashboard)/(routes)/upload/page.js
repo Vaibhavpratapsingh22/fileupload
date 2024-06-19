@@ -2,14 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import UploadForm from "./_components/UploadForm";
-import { app } from "@/firebaseConfig";
+import { app } from "../../../../firebaseConfig";
 import {
   getStorage,
   ref,
   uploadBytesResumable,
   getDownloadURL,
 } from "firebase/storage";
-import { randomString } from "@/app/_utils/GenerateRandomString";
+import { randomString } from "../.././../_utils/GenerateRandomString";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 

@@ -10,25 +10,18 @@ const Header = ({loggedIn}) => {
   return (
     <nav className="bg-white shadow-lg">
     <div className="max-w-6xl mx-auto px-4">
-      <div className="flex justify-between">
+      <div className="flex justify-between py-2">
         <div className="flex space-x-7">
           <div>
             <a href="/" className="flex items-center py-4 px-2">
-              
-              <span className="font-semibold text-gray-500 text-lg">Welcome,</span>
+              <span className="font-semibold text-gray-500 text-lg">FILE SHARE APP</span>
             </a>
-          </div>
-
-          <div className="hidden md:flex items-center space-x-1">
-            <a href="/upload" className="py-4 px-2 text-gray-500  hover:text-green-500 hover:border-b-4 hover:border-green-500 font-semibold ">Upload</a>
-            <a href="/files" className="py-4 px-2 text-gray-500  hover:text-green-500 hover:border-b-4 hover:border-green-500 font-semibold ">Files</a>
-            {/* <a href="" className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Upgrade</a>
-            <a href="" className="py-4 px-2 text-gray-500 font-semibold hover:text-green-500 transition duration-300">Newsletter</a> */}
           </div>
         </div>
   
-        <div className="hidden md:flex items-center space-x-3 ">
-         {!loggedIn ?  <a href="/sign-in" className="py-2 px-2 font-medium rounded bg-green-500 text-white transition duration-300">Log In</a> : <UserButton /> }
+        <div className="hidden md:flex items-center space-x-1 ">
+        <a href="/upload" className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">UPLOAD FILES</a>
+         {!loggedIn ?  <a href="/sign-in" className="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">LOGIN</a> : <UserButton /> }
         </div>
 
         <div className="md:hidden flex items-center">

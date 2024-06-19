@@ -1,12 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
-import { app } from "@/firebaseConfig";
+import { app } from '../../../../../firebaseConfig';
 import Image from "./_components/Image";
 import FileDetailsForm from "./_components/FileDetailsForm";
 import Link from "next/link";
 import { ArrowLeftCircle } from "lucide-react";
-import GlobalApi from "@/app/_utils/GlobalApi";
+// import GlobalApi from "@/app/_utils/GlobalApi";
 
 const FilePreview = ({ params }) => {
   const db = getFirestore(app);
